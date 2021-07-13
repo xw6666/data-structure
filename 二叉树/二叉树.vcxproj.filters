@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Biree.h">
+    <ClInclude Include="BiTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
