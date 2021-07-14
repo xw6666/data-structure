@@ -15,7 +15,31 @@ typedef struct BTNode
 }BTNode, * BiTree;
 
 //通过中序遍历找到前驱后继
+BTNode* pre;
+void InThreading(BTNode* p)
+{
+	if (p)
+	{
+		//中序遍历
+		InThreading(p->left);
+		if (p->left == NULL)
+		{
+			//如果左指针为空
+			//把这个指针作为前驱线索
+			p->RTag = Thread;
+			p->left = pre;
+		}
 
+		if (pre->right == NULL)
+		{
+			//把这个指针做为后继线索
+			pre->RTag = Thread;
+			pre->right = p;
+		}
+		pre = p;
+		InThreading(p->right);
+	}
+}
 
 int main()
 {
