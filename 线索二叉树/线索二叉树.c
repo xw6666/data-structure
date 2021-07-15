@@ -30,7 +30,7 @@ void InThreading(BTNode* p)
 			p->left = pre;
 		}
 
-		if (pre->right == NULL)
+		if (pre != NULL &&pre->right == NULL)
 		{
 			//把这个指针做为后继线索
 			pre->RTag = Thread;
@@ -39,6 +39,32 @@ void InThreading(BTNode* p)
 		pre = p;
 		InThreading(p->right);
 	}
+}
+
+//void InOrderByThread(BTNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return;
+//	}
+//	while (root->left != NULL)
+//	{
+//		//遍历到第一个节点
+//		root = root->left;
+//	}
+//	
+//}
+
+void InOrder(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+
+	InOrder(root->left);
+	printf("%c ", root->val);
+	InOrder(root->right);
 }
 
 int main()
@@ -101,7 +127,9 @@ int main()
 	C->right = G;
 	D->left = H;
 	D->right = I;
-	E->right = J;
+	E->left = J;
 
+	//InThreading(A);
+	printf("该树的中序遍历结果:\n");
 	InOrder(A);
 }
