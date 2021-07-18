@@ -26,3 +26,37 @@
 //    res[i] = '\0';
 //    return res;
 //}
+
+//leetcode - 19. 删除链表的倒数第 N 个结点
+//typedef struct ListNode Node;
+//
+//struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+//    if (head == NULL)
+//    {
+//        return NULL;
+//    }
+//    Node* newHead = (Node*)malloc(sizeof(Node));
+//    newHead->next = head;
+//
+//    Node* cur = head;
+//    Node* prev = newHead;
+//    Node* fast = head;
+//    while (n--)
+//    {
+//        //与cur产生间隔
+//        fast = fast->next;
+//    }
+//    while (fast)
+//    {
+//        prev = cur;
+//        cur = cur->next;
+//        fast = fast->next;
+//    }
+//    //删除结点cur
+//    Node* temp = cur;
+//    prev->next = prev->next->next;
+//    free(temp);
+//    temp = NULL;
+//
+//    return newHead->next;
+//}
