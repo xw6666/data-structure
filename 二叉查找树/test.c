@@ -41,9 +41,41 @@ void test1()
 	InOrder(tree);
 }
 
+long long prev = INT_MIN;
+bool isValidBST(BTNode* root) {
+	if (root == NULL)
+	{
+		return true;
+	}
+	if (!isValidBST(root->left))
+	{
+		return false;
+	}
+	if (prev >= root->val)
+	{
+		return false;
+	}
+	prev = root->val;
+
+	return isValidBST(root->right);
+}
+
+void test2()
+{
+	BiTree tree = NULL;
+	tree = MakeEmpty(&tree);
+	tree = Insert(tree, 0);
+	//tree = Insert(tree, 1);
+	//tree = Insert(tree, 4);
+	//tree = Insert(tree, 3);
+	//tree = Insert(tree, 6);
+
+	printf("%d\n", isValidBST(tree));
+}
 
 int main()
 {
-	test1();
+	//test1();
+	test2();
 	return 0;
 }
