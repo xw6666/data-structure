@@ -29,7 +29,7 @@ BTNode* FindMax(BiTree root);
 BTNode* Insert(BiTree root, TreeNodeElement x);
 
 //É¾³ý²Ù×÷
-//BTNode* Delete(BiTree root, TreeNodeElement x);
+BTNode* Delete(BiTree root, TreeNodeElement x);
 
 //ÖÐÐò±éÀú
 void InOrder(BiTree root);

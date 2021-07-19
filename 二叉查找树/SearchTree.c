@@ -100,10 +100,60 @@ BTNode* Insert(BiTree root, TreeNodeElement x)
 	return root;
 }
 
-//BTNode* Delete(BiTree root, TreeNodeElement x)
-//{
-//
-//}
+BTNode* Delete(BiTree root, TreeNodeElement x)
+{
+	//分三种情况
+	//1.删除的节点是叶子节点
+	//2.删除的节点只有一个儿子
+	//3.删除的节点有两个儿子
+	//1情况我们直接删除
+	//2情况我们先将它的父节点调整指针绕过该节点后删除
+	//3情况通过递归找到右子树的最小值，在讲该节点值替换成右子树最小值
+	//再把右子树最小值对应的节点删去
+	if (root == NULL)
+	{
+		printf("Elemet not found!\n");
+		return NULL;
+	}
+
+	if (x < root->val)
+	{
+		//向左删除
+		root->left = Delete(root->left, x);
+	}
+	else if (x > root->val)
+	{
+		//向右删除
+		root->right = Delete(root->right, x);
+	}
+	else
+	{
+		//删除该指针对应val
+		if (root->left && root->right)
+		{
+			//如果左右儿子存在
+			//将该节点值改为右子树最小值，并删除右子树最小值所在结点
+			BTNode* temp = FindMin(root->right);
+			assert(temp != NULL);
+			root->val = temp->val;
+			root->right = Delete(root->right, root->val);
+		}
+		else if (root->left)
+		{
+			BTNode* temp = root;
+			root = root->left;
+			free(temp);
+		}
+		else
+		{
+			BTNode* temp = root;
+			root = root->right;
+			free(temp);
+		}
+	}
+
+	return root;
+}
 
 void InOrder(BiTree root)
 {

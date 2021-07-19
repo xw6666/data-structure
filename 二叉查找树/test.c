@@ -33,7 +33,14 @@ void test1()
 		printf("The target number is %d\n", targetNode->val);
 	}
 	//²éÕÒ²âÊÔ³É¹¦
+
+	//²âÊÔÉ¾³ı
+	tree = Delete(tree, 8);
+	tree = Delete(tree, 8);
+	tree = Delete(tree, 6);
+	InOrder(tree);
 }
+
 
 int main()
 {
