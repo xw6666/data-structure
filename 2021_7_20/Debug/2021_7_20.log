@@ -1,0 +1,4 @@
+﻿  test.c
+E:\Codefield\data-structure\2021_7_20\test.c(35,14): warning C4047: “return”:“int”与“void *”的间接级别不同
+E:\Codefield\data-structure\2021_7_20\test.c(48,45): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  2021_7_20.vcxproj -> E:\Codefield\data-structure\2021_7_20\Debug\2021_7_20.exe
