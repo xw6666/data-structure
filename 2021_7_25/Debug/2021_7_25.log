@@ -1,0 +1,4 @@
+﻿  源.c
+E:\Codefield\data-structure\2021_7_25\源.c(62): warning C4715: “PopStack”: 不是所有的控件路径都返回值
+E:\Codefield\data-structure\2021_7_25\源.c(80): warning C4715: “TopStack”: 不是所有的控件路径都返回值
+  2021_7_25.vcxproj -> E:\Codefield\data-structure\2021_7_25\Debug\2021_7_25.exe

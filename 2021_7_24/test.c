@@ -1,5 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 //leetcode - 3. 无重复字符的最长子串
 //int lengthOfLongestSubstring(char* s) {
 //    int slen = strlen(s);
@@ -120,3 +123,62 @@
 //    }
 //
 //}
+
+int* canSeePersonsCount(int* heights, int heightsSize, int* returnSize) {
+    int* res = (int*)malloc(sizeof(int) * heightsSize);
+    *returnSize = heightsSize;
+
+    int i = 0;
+    for (i = 0; i < heightsSize; i++)
+    {
+        int j = i + 1;
+        int cnt = 0;
+
+        while (j < heightsSize && heights[j] < heights[i])
+        {
+            j++;
+            cnt++;
+        }
+        if (j < heightsSize)
+        {
+            cnt++;
+        }
+
+        int k = 0;
+        int max = INT_MIN;
+        int tags = INT_MIN;
+        int flag = 1;
+        for (k = i + 1; k <= j - 1; k++)
+        {
+            flag = 0;
+            if (heights[k] > max)
+            {
+                max = heights[k];
+                tags = k;
+            }
+        }
+        if (flag == 0)
+        {
+            int temp = j - tags - 1;
+            cnt = cnt - temp;
+        }
+      
+        res[i] = cnt;
+
+    }
+
+    res[heightsSize - 1] = 0;
+    return res;
+}
+
+int main()
+{
+    int arr[] = { 5,1,2,3,10 };
+    int returnSize = 0;
+    int* res = canSeePersonsCount(arr, 5, &returnSize);
+    for (int i = 0; i < returnSize; i++)
+    {
+        printf("%d ", res[i]);
+    }
+    return 0;
+}
