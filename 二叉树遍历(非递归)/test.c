@@ -55,8 +55,10 @@ TreeNodeType* InOrder(BTNode* root, int* size)
 	SqStack s;
 	InitStack(&s);
 	BTNode* node = root;
+	//当目前的node不为空或者栈不为空
 	while (node || !EmptyStack(&s))
 	{
+		//持续的将左节点压入栈中
 		while (node)
 		{
 			PushStack(&s, node);
@@ -65,6 +67,7 @@ TreeNodeType* InOrder(BTNode* root, int* size)
 		BTNode* element = PopStack(&s);
 		//node = PopStack(&s);
 		nums[(*size)++] = element->val;
+		//出栈后访问右节点
 		if (element->right != NULL)
 		{
 			node = element->right;
