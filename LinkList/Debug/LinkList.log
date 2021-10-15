@@ -1,0 +1,5 @@
+﻿  LinkedList.c
+  test.c
+  正在生成代码...
+E:\Codefield\data-structure\LinkList\LinkedList.c(16): warning C4716: “GetNewNode”: 必须返回一个值
+  LinkList.vcxproj -> E:\Codefield\data-structure\LinkList\Debug\LinkList.exe
