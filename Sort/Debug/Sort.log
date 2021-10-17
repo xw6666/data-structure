@@ -1,2 +1,4 @@
-﻿  sort.c
+﻿  sort.cpp
+E:\Codefield\data-structure\Sort\sort.cpp(71,11): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Sort\sort.cpp(104,29): warning C4018: “<”: 有符号/无符号不匹配
   Sort.vcxproj -> E:\Codefield\data-structure\Sort\Debug\Sort.exe
