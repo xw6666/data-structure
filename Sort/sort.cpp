@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS 1
 #include <iostream>
 using namespace std;
 #include <vector>
@@ -101,16 +102,16 @@ void shell_sort(vector<int>& ivec)
 	do
 	{
 		increment = increment / 3 + 1;
-		for (int i = increment; i < ivec.size(); i++)
+		for (int i = increment; i < ivec.size(); i+= increment)
 		{
 			int temp = ivec[i];
-			int j = i;
-			while (j >= increment && ivec[j] > ivec[i])
+			int j = i - increment;
+			while (j >= 0 && ivec[j] > temp)
 			{
-				ivec[j] = ivec[j - increment];
+				ivec[j + increment] = ivec[j];
 				j = j - increment;
 			}
-			ivec[j] = temp;
+			ivec[j + increment] = temp;
 		}
 	} while (increment != 1);
 }
@@ -167,12 +168,12 @@ void quick_sort(vector<int>& ivec, int begin, int end)
 	{
 		return;
 	}
+
 	int temp = ivec[begin];
 	int i = begin;
 	int j = end;
-	while (i != j)
+	while (i < j)
 	{
-		//j先找比基准小的数
 		while (ivec[j] >= temp && i < j)
 		{
 			j--;
@@ -184,32 +185,24 @@ void quick_sort(vector<int>& ivec, int begin, int end)
 
 		if (i < j)
 		{
-			//交换
 			int t = ivec[i];
 			ivec[i] = ivec[j];
 			ivec[j] = t;
+			i++;
+			j--;
 		}
 	}
-	//到这里j == i
-	int flag = 1;
-	if (i == begin)
-	{
-		flag = 0;
-	}
+	//i == j
 	ivec[begin] = ivec[i];
 	ivec[i] = temp;
-	if (flag == 1)
-	{
-		print_vector(ivec);
-	}
-	quick_sort(ivec, begin, i - 1);
-	quick_sort(ivec, i + 1, ivec.size() - 1);
-
+	quick_sort(ivec, begin, j - 1);
+	quick_sort(ivec, j + 1, end);
 }
+
 
 int main()
 {
-	vector<int> ivec{ 45 ,53,18,36,72,30,48,93,15,36 };
+	vector<int> ivec{ 6,9,7,4,8,3,2,1,5 };
 	//bubble_sort(ivec);
 	//selec_sort(ivec);
 	//insert_sort(ivec);
