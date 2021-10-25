@@ -274,3 +274,52 @@
 //
 //
 //
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void shellSort(int* a, int len, int* d, int t);
+
+int main(void)
+{
+    int i, len, * a, * d, j, t;
+
+    scanf("%d %d", &len, &t);
+    a = (int*)malloc(len * sizeof(int));
+    d = (int*)malloc(j * sizeof(int));
+    for (i = 0; i < len; i++) {
+        scanf("%d", &a[i]);
+    }
+    for (j = 0; j < t; j++) {
+        scanf("%d", &d[j]);
+    }
+    shellSort(a, len, d, t);
+
+
+    printf("\n");
+
+    return 0;
+}
+
+void shellSort(int* a, int n, int* d, int t)
+{
+    int i, j, h, k, x;
+    for (h = 0; h < t; h++) {
+        k = d[h];
+        for (i = k; i < n; i++) {
+
+            x = a[i];
+            j = i - k;
+            while (j >= 0 && a[j] > x) {
+                a[j + k] = a[j];
+                j = j - k;
+
+                a[j + k] = x;
+            }
+            for (i = 0; i < n; i++) {
+                printf("%d ", a[i]);
+            }
+            printf("\n");
+        }
+    }
+}

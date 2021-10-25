@@ -1,2 +1,6 @@
-﻿  test.c
-  Sort.vcxproj -> E:\Codefield\data-structure\Sort\Debug\Sort.exe
+﻿  sort.cpp
+E:\Codefield\data-structure\Sort\sort.cpp(287,5): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Codefield\data-structure\Sort\sort.cpp(291,9): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Codefield\data-structure\Sort\sort.cpp(294,9): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  test.cpp
+  正在生成代码...
