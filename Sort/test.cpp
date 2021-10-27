@@ -1,5 +1,7 @@
-////#define _CRT_SECURE_NO_WARNINGS 1
-////#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <cstdio>
+#include <iostream>
+using namespace std;
 ////
 ////void print_arr(int* fly, int numsSize)
 ////{
@@ -192,5 +194,47 @@
 //			cout << "no" << endl;
 //		}
 //	}
+//	return 0;
+//}
+
+//int main()
+//{
+//	int arr1[] = { 1,7,8 };
+//	int arr2[] = { 2,4,6,8,10,11 };
+//	int sz1 = sizeof(arr1) / sizeof(int);
+//	int sz2 = sizeof(arr2) / sizeof(int);
+//	int* ans = new int[sz1 + sz2];
+//	int i = 0;
+//	int j = 0;
+//	int k = 0;
+//	while (i < sz1 && j < sz2)
+//	{
+//		if (arr1[i] < arr2[j])
+//		{
+//			ans[k++] = arr1[i++];
+//		}
+//		else
+//		{
+//			ans[k++] = arr2[j++];
+//		}
+//		
+//	}
+//	while (i < sz1)
+//	{
+//		ans[k++] = arr1[i++];
+//	}
+//	while (j < sz2)
+//	{
+//		ans[k++] = arr2[j++];
+//	}
+//
+//	for (i = 0; i < k; i++)
+//	{
+//		cout << ans[i] << " ";
+//	}
+//	cout << endl;
+//
+//	delete[] ans;
+//
 //	return 0;
 //}
