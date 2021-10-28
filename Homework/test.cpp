@@ -1,10 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <iostream>
 using namespace std;
-//#include <vector>
-//#include <cmath>
+#include <vector>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
+#include <map>
+#include <algorithm>
 //
 //void init(vector<vector<int>>& data, int r, int c, int t)
 //{
@@ -446,34 +448,410 @@ using namespace std;
 //	return 0;
 //}
 
-static bool arr[100000005];
+//static bool nums[100000005];
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	nums[1] = 1;
+//	int i = 0;
+//	int j = 0;
+//	for (i = 2; i * i <= n; i++)
+//	{
+//		if (nums[i] == 0)
+//		{
+//			//如果是素数
+//			for (j = i * i; j <= n; j += i)
+//			{
+//				//把它的倍数全部变成合数
+//				nums[j] = 1;
+//			}
+//		}
+//	}
+//	int ans = 0;
+//	for (i = 2; i <= n; i++)
+//	{
+//		if (nums[i] == 0)
+//		{
+//			ans++;
+//		}
+//	}
+//	printf("%d\n", ans);
+//	return 0;
+//}
+
+
+//struct C
+//{
+//	int a;
+//	int value;
+//	double s;
+//};
+//
+//int cmp(const void* e1, const void* e2)
+//{
+//	return (((C*)e2)->s - ((C*)e1)->s);
+//}
+//
+//int main()
+//{
+//	int m = 0, n = 0;
+//	scanf("%d%d", &m, &n);
+//	C* arr = new C[n];
+//	int i = 0;
+//	while (n--)
+//	{
+//		//读入n组数据
+//		scanf("%d%d", &arr[i].a, &arr[i].value);
+//		arr[i].s = double(arr[i].a) / (arr[i].value);
+//		i++;
+//	}
+//
+//	qsort(arr, i, sizeof(arr[0]), cmp);
+//
+//	double ret = 0.0;
+//	int j = 0;
+//	while (j < i)
+//	{
+//		if (arr[j].value <= m)
+//		{
+//			ret += (arr[j].a);
+//			m -= (arr[j].value);
+//		}
+//		else
+//		{
+//			ret += ((arr[j].s) * m);
+//			break;
+//		}
+//		j++;
+//	}
+//	printf("%lf\n", ret);
+//	delete[] arr; 
+//	return 0;
+//}
+
+//int main()
+//{
+//	int n = 0;
+//	cin >> n;
+//	while (n--)
+//	{
+//		int arr[410] = { 0 };
+//		int m = 0;
+//		cin >> m;
+//		for (int i = 0; i < m; i++)
+//		{
+//			int begin = 0;
+//			int end = 0;
+//			cin >> begin >> end;
+//			if (end < begin)
+//			{
+//				int temp = end;
+//				end = begin;
+//				begin = temp;
+//			}
+//			while (begin <= end)
+//			{
+//				arr[begin] = arr[begin] + 1;
+//				begin++;
+//			}
+//		}
+//
+//		int max = -1;
+//		for (int j = 0; j < 410; j++)
+//		{
+//			if (arr[j] > max)
+//			{
+//				max = arr[j];
+//			}
+//		}
+//		cout << max * 10 << endl;
+//	}
+//	return 0;
+//}
+
+//输出删除n个数字后剩下的数字构成最大的数
+//int main()
+//{
+//	char str[241] = { 0 };
+//	int n = 0;
+//	cin >> str >> n;
+//	int len = strlen(str);
+//
+//	char ans[241] = { 0 };
+//
+//	while (n--)
+//	{
+//		int index = -1;
+//		int flag = 1;
+//		for (int i = 1; i < len - 1; i++)
+//		{
+//			if (str[i] > str[i - 1] && str[i] < str[i + 1])
+//			{
+//				flag = 0;
+//				index = i;
+//				break;
+//			}
+//		}
+//
+//		if (flag == 0)
+//		{
+//			//删除index
+//			int j = 0;
+//			for (int i = 0; i < len; i++)
+//			{
+//				if (i == index)
+//				{
+//					continue;
+//				}
+//				ans[j++] = str[i];
+//			}
+//			ans[j++] = '\0';
+//		}
+//		else
+//		{
+//			//删除最大数
+//			char max = '0' - 1;
+//			for (int i = 0; i < len; i++)
+//			{
+//				if (str[i] > max)
+//				{
+//					max = str[i];
+//					index = i;
+//				}
+//			}
+//			int j = 0;
+//			//最大下标在index
+//			for (int i = 0; i < len; i++)
+//			{
+//				if (i == index)
+//				{
+//					continue;
+//				}
+//				ans[j++] = str[i];
+//			}
+//			ans[j++] = '\0';
+//		}
+//		for (int i = 0; i < 241; i++)
+//		{
+//			str[i] = ans[i];
+//		}
+//		len--;
+//	}
+//	
+//	cout << str << endl;
+//
+//	return 0;
+//}
+
+
+//P1223
+//int main()
+//{
+//	int n = 0;
+//	cin >> n;
+//	multimap<int, int> m;
+//	int temp = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> temp;
+//		m.insert(make_pair(temp, i + 1));
+//	}
+//
+//	for (auto i : m)
+//	{
+//		cout << i.second << " ";
+//	}
+//
+//	cout << endl;
+//	double ans = 0.0;
+//	auto i = m.begin();
+//	i++;
+//	for (; i != m.end(); i++)
+//	{
+//		auto j = i;
+//		j--;
+//		for (; j != m.begin(); j--)
+//		{
+//			ans += ((*j).first);
+//		}
+//		//加上begin处
+//		ans += ((*j).first);
+//	}
+//	ans = ans / n;
+//	printf("%.2lf\n", ans);
+//	return 0;
+//}
+
+//p1478
+//struct apple
+//{
+//	int height;
+//	int value;
+//};
+//
+//int cmp(const void* e1, const void* e2)
+//{
+//	return (((apple*)e1)->value - ((apple*)e2)->value);
+//}
+//
+//int main()
+//{
+//	int n = 0, s = 0;
+//	cin >> n >> s;
+//	int a = 0;
+//	int b = 0;
+//	cin >> a >> b;
+//	int height = a + b;
+//	apple* v = new apple[n];
+//	int j = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> a >> b;
+//		if (height >= a)
+//		{
+//			//身高比苹果高
+//			apple t = { a,b };
+//			v[j++] = t;
+//		}
+//	}
+//	
+//	qsort(v, j, sizeof(apple), cmp);
+//	int ans = 0;
+//	for (int i = 0; i < j; i++)
+//	{
+//		if (s >= v[i].value)
+//		{
+//			ans++;
+//			s -= (v[i].value);
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//
+//	cout << ans << endl;
+//
+//	return 0;
+//}
+
+//int cmp(const void* e1, const void* e2)
+//{
+//	return ((*(int*)e1) - (*(int*)e2));
+//}
+//
+//int main()
+//{
+//	int n = 0, m = 0;
+//	cin >> n >> m;
+//	
+//	int ans = 0;
+//	int temp = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int a = 0;
+//		cin >> a;
+//		if (temp + a > m)
+//		{
+//			ans++;
+//			temp = a;
+//		}
+//		else
+//		{
+//			temp += a;
+//		}
+//	}
+//	cout << ans + 1 << endl;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n = 0, m = 0;
+//	cin >> n >> m;
+//	int* arr = new int[n];
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> arr[i];
+//	}
+//	
+//	return 0;
+//}
+
+//double f(double a, double b, double c, double d, double x)
+//{
+//	return (a * pow(x, 3) + b * pow(x, 2) + c * x + d);
+//}
+//
+//int main()
+//{
+//	double a = 0, b = 0, c = 0, d = 0;
+//	cin >> a >> b >> c >> d;
+//	int s = 0;
+//	for (int i = -100; i < 100; i++)
+//	{
+//		double l = i;
+//		double r = (double)(i + 1);
+//		double x1 = f(a, b, c, d, l);
+//		double x2 = f(a, b, c, d, r);
+//		
+//		if (x1 == 0)
+//		{
+//			printf("%.2lf ", l);
+//		}
+//
+//		if(x1 * x2 < 0)
+//		{
+//			//进行二分
+//			while ((r - l) > 1e-5)
+//			{
+//				double mid = (l + r) / 2;
+//				if (f(a, b, c, d, mid) * f(a, b, c, d, r) <= 0)
+//				{
+//					//根在另一边
+//					l = mid;
+//				}
+//				else
+//				{
+//					r = mid;
+//				}
+//			}
+//			printf("%.2lf ", r);
+//		}
+//		
+//
+//	}
+//
+//
+//	return 0;
+//}
+
+long long power(long long a, long long b, long long p)
+{
+	long long ans = 0;
+	if (b == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		ans = power(a * a % p, b / 2, p) % p;
+		if (b % 2 == 1)
+		{
+			ans = ans * a % p;
+		}
+	}
+
+	return ans;
+}
 
 int main()
 {
-	int n = 0;
-	scanf("%d", &n);
-	arr[1] = 1;
-	int i = 2;
-	for (i = 2; i * i <= n; i++)
-	{
-		if (!arr[i])
-		{
-			//把它的倍数给1
-			int j = i * i;
-			for (j = i * i; j <= n; j += i)
-			{
-				arr[j] = 1;
-			}
-		}
-	}
-	int ret = 0;
-	for (i = 1; i <= n; i++)
-	{
-		if (arr[i] == 0)
-		{
-			ret++;
-		}
-	}
-	cout << ret << endl;
+	long long a, b, p;
+	cin >> a >> b >> p;
+	printf("%lld^%lld mod %lld=%lld", a, b, p, power(a, b, p));
 	return 0;
 }
