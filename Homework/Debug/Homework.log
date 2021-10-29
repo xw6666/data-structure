@@ -1,2 +1,4 @@
 ﻿  test.cpp
+E:\Codefield\data-structure\Homework\test.cpp(1069,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Homework\test.cpp(1069,47): warning C4018: “<”: 有符号/无符号不匹配
   Homework.vcxproj -> E:\Codefield\data-structure\Homework\Debug\Homework.exe

@@ -781,77 +781,330 @@ using namespace std;
 //	return 0;
 //}
 
-//double f(double a, double b, double c, double d, double x)
+//double a, b, c, d;
+//double f(double x)
 //{
 //	return (a * pow(x, 3) + b * pow(x, 2) + c * x + d);
 //}
 //
 //int main()
 //{
-//	double a = 0, b = 0, c = 0, d = 0;
-//	cin >> a >> b >> c >> d;
-//	int s = 0;
+//	scanf("%lf%lf%lf%lf", &a, &b, &c, &d);
+//	int ret = 0;
 //	for (int i = -100; i < 100; i++)
 //	{
-//		double l = i;
-//		double r = (double)(i + 1);
-//		double x1 = f(a, b, c, d, l);
-//		double x2 = f(a, b, c, d, r);
-//		
+//		double x1 = f(i);
 //		if (x1 == 0)
 //		{
-//			printf("%.2lf ", l);
-//		}
-//
-//		if(x1 * x2 < 0)
-//		{
-//			//进行二分
-//			while ((r - l) > 1e-5)
+//			printf("%.2lf ", (double)i);
+//			ret++;
+//			if (ret == 3)
 //			{
-//				double mid = (l + r) / 2;
-//				if (f(a, b, c, d, mid) * f(a, b, c, d, r) <= 0)
+//				break;
+//			}
+//		}
+//		else
+//		{
+//			double x2 = f((double)i + 1);
+//			if (x1 * x2 < 0)
+//			{
+//				double l = i;
+//				double r = (double)i + 1;
+//				while ((r - l) > 1e-4)
 //				{
-//					//根在另一边
-//					l = mid;
+//					double mid = (l + r) / 2;
+//					if (f(mid) * f(l) <= 0)
+//					{
+//						r = mid;
+//					}
+//					else
+//					{
+//						l = mid;
+//					}
 //				}
-//				else
+//				printf("%.2lf ", l);
+//				ret++;
+//				if (ret == 3)
 //				{
-//					r = mid;
+//					break;
 //				}
 //			}
-//			printf("%.2lf ", r);
 //		}
-//		
-//
+//	}
+//	return 0;
+//}
+//long long power(long long a, long long b, long long p)
+//{
+//	long long ans = 1;
+//	while (b)
+//	{
+//		if (b % 2 == 1)
+//		{
+//			ans = ans * a % p;
+//		}
+//		a = a * a % p;
+//		b /= 2;
 //	}
 //
+//	return ans;
+//}
 //
+//int main()
+//{
+//	long long a, b, p;
+//	cin >> a >> b >> p;
+//	printf("%lld^%lld mod %lld=%lld", a, b, p, power(a, b, p));
 //	return 0;
 //}
 
-long long power(long long a, long long b, long long p)
+//int check(int* arr, int size, int max)
+//{
+//	int time = 0;
+//	int temp = 0;
+//	for (int i = 0; i < size; i++)
+//	{
+//		if (temp + arr[i] > max)
+//		{
+//			time++;
+//			temp = arr[i];
+//		}
+//		else
+//		{
+//			temp += arr[i];
+//		}
+//	}
+//	return (++time);
+//}
+//
+//int main()
+//{
+//	int n = 0, m = 0;
+//	cin >> n >> m;
+//	int* arr = new int[n];
+//	//cout << INT_MIN << endl;
+//	int max = -2147483648;
+//	int sum = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> arr[i];
+//		sum += arr[i];
+//		max = (arr[i] > max ? arr[i] : max);
+//	}
+//
+//	int l = max;
+//	int r = sum;
+//	while (l <= r)
+//	{
+//		int mid = ((l + r) >> 1);
+//		if (check(arr, n, mid) <= m)
+//		{
+//			r = mid - 1;
+//		}
+//		else
+//		{
+//			l = mid + 1;
+//		}
+//	}
+//	cout << l << endl;
+//	delete[]arr;
+//	return 0;
+//}
+
+//输入n个数，判断能否加成k
+//思路：对于每个数ai，我们可以选择加给sum或者不加给sum两种情况，使用dfs
+
+//int arr[1000];
+//int n, k;
+//
+////该函数作用判断ai到an-1能不能加成k
+//bool dfs(int i, int sum)
+//{
+//	if (i == n)
+//	{
+//		return sum == k;
+//	}
+//	if (dfs(i + 1, sum + arr[i]))
+//	{
+//		return true;
+//	}
+//	if (dfs(i + 1, sum))
+//	{
+//		return true;
+//	}
+//	return false;
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> arr[i];
+//	}
+//	cin >> k;
+//	int i = 0;
+//	int sum = 0;
+//	if (dfs(i, sum))
+//	{
+//		cout << "yes" << endl;
+//	}
+//	else
+//	{
+//		cout << "no" << endl;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n = 0;
+//	int len = 0;
+//	int size = 0;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		//cin >> len >> size;
+//		scanf("%d%d", &len, &size);
+//		int* arr = new int[size];
+//		int i = 0;
+//		for (i = 0; i < size; i++)
+//		{
+//			scanf("%d", &arr[i]);
+//		}
+//		int minT = -2147483648;
+//		int maxT = -2147483648;
+//		for (i = 0; i < size; i++)
+//		{
+//			int min = fmin(arr[i], len - arr[i]);
+//			if (min > minT)
+//			{
+//				minT = min;
+//			}
+//			int max = fmax(arr[i], len - arr[i]);
+//			if (max > maxT)
+//			{
+//				maxT = max;
+//			}
+//		}
+//		cout << minT << " " << maxT << endl;
+//		delete[] arr;
+//	}
+//	return 0;
+//}
+
+//void dfs(vector< vector<char> >& v, int x, int y)
+//{
+//	if (v[x][y] == 'W')
+//	{
+//		v[x][y] = '.';
+//		//八个维度dfs
+//		//对边界进行特判
+//		int i = 0;
+//		for (i = x - 1; i <= x + 1; i++)
+//		{
+//			int j = 0;
+//			for (j = y - 1; j <= y + 1; j++)
+//			{
+//				if (i >= 0 && i < v.size() && j >= 0 && j < v[i].size())
+//				{
+//					if ((i != x) || (j != y))
+//					{
+//						dfs(v, i, j);
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	int m = 0;
+//	scanf("%d%d", &n, &m);
+//	vector< vector<char> > v;
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		vector<char> temp;
+//		int j = 0;
+//		char t = 0;
+//		for (j = 0; j < m; j++)
+//		{
+//			scanf(" %c", &t);
+//			temp.push_back(t);
+//		}
+//		v.push_back(temp);
+//	}
+//
+//	int ans = 0;
+//	for (i = 0; i < v.size(); i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < v[i].size(); j++)
+//		{
+//			if (v[i][j] == 'W')
+//			{
+//				dfs(v, i, j);
+//				ans++;
+//			}
+//		}
+//	}
+//
+//	printf("%d\n", ans);
+//	return 0;
+//}
+
+//poj2386
+void dfs(vector<vector<char> >& v, int x, int y)
 {
-	long long ans = 0;
-	if (b == 0)
+	if (v[x][y] == 'W')
 	{
-		return 1;
-	}
-	else
-	{
-		ans = power(a * a % p, b / 2, p) % p;
-		if (b % 2 == 1)
+		v[x][y] = '.';
+		for (int i = x - 1; i <= x + 1; i++)
 		{
-			ans = ans * a % p;
+			for (int j = y - 1; j <= y + 1; j++)
+			{
+				if (i >= 0 && i < v.size() && j >= 0 && j < v[i].size() && (i != x || j != y))
+				{
+					dfs(v, i, j);
+				}
+			}
 		}
 	}
-
-	return ans;
 }
-
 int main()
 {
-	long long a, b, p;
-	cin >> a >> b >> p;
-	printf("%lld^%lld mod %lld=%lld", a, b, p, power(a, b, p));
+	int n = 0;
+	int m = 0;
+	cin >> n >> m;
+	vector<vector<char> > v;
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < n; i++)
+	{
+		vector<char> temp;
+		char t = 0;
+		for (j = 0; j < m; j++)
+		{
+			cin >> t;
+			temp.push_back(t);
+		}
+		v.push_back(temp);
+	}
+	int ans = 0;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			if (v[i][j] == 'W')
+			{
+				dfs(v, i, j);
+				ans++;
+			}
+		}
+	}
+	cout << ans << endl;
 	return 0;
 }
