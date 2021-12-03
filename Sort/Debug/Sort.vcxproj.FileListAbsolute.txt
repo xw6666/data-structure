@@ -1,2 +1,1 @@
 E:\Codefield\data-structure\Sort\Debug\Sort.exe
-E:\Codefield\data-structure\Sort\Debug\Sort.pdb

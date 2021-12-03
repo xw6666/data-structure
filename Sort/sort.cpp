@@ -16,6 +16,15 @@ void print_vector(vector<T>& v)
 	cout << endl;
 }
 
+void PrintArr(int* arr, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
+
 //冒泡排序
 template <class T>
 void bubble_sort(vector<T>& v)
@@ -68,22 +77,20 @@ void selec_sort(vector<int>& v)
 
 //插入排序
 //时间复杂度:最好的情况O(n),最坏的情况O(n^2)
-void insert_sort(vector<int>& v)
+void insert_sort(vector<int>& ivec)
 {
-	for (int i = 1; i < v.size(); i++)
+	for (int i = 1; i < ivec.size(); i++)
 	{
+		int temp = ivec[i];
 		int j = i - 1;
-		int temp = v[i];
-		while (j >= 0 && v[j] > temp)
+		while (j >= 0 && ivec[j] > temp)
 		{
-			v[j + 1] = v[j];
+			ivec[j + 1] = ivec[j];
 			j--;
 		}
-		v[j + 1] = temp;
-		print_vector(v);
+		ivec[j + 1] = temp;
 	}
 }
-
 
 //希尔排序
 void shell_sort(vector<int>& ivec, int* incrementNums, int n)
@@ -235,6 +242,71 @@ void quick_sort(vector<int>& ivec, int begin, int end)
 	quick_sort(ivec, j + 1, end);
 }
 
+//归并排序 - 非递归
+void MergeSort(int* arr, int size)
+{
+	int* temp = (int*)malloc(sizeof(int) * size);
+	if (temp == NULL)
+	{
+		cout << "Malloc failed!" << endl;
+		exit(-1);
+	}
+	int gap = 1;
+	while (gap < size)
+	{
+		for (int i = 0; i < size; i += 2 * gap)
+		{
+			//[i,i+gap-1] [i+gap,i+2*gap-1]
+			int begin1 = i;
+			int end1 = i + gap - 1;
+			int begin2 = i + gap;
+			int end2 = i + 2 * gap - 1;
+			int index = i;
+			//判断越界情况
+			if (end1 >= size)
+			{
+				//end1越界，修正end1
+				end1 = size - 1;
+			}
+			if (begin2 >= size)
+			{
+				begin2 = size - 1;
+			}
+			if (end2 >= size)
+			{
+				end2 = size - 1;
+			}
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (arr[begin1] < arr[begin2])
+				{
+					temp[index++] = arr[begin1++];
+				}
+				else
+				{
+					temp[index++] = arr[begin2++];
+				}
+			}
+			while (begin1 <= end1 && index < size)
+			{
+				temp[index++] = arr[begin1++];
+			}
+			while (begin2 <= end2 && index < size)
+			{
+				temp[index++] = arr[begin2++];
+			}
+		}
+		//拷贝回原数组
+		for (int i = 0; i < size; i++)
+		{
+			arr[i] = temp[i];
+		}
+		gap *= 2;
+	}
+	free(temp);
+	temp = NULL;
+}
+
 //基数排序
 void radix_sort(vector<int>& ivec) 
 {
@@ -287,40 +359,57 @@ void radix_sort(vector<int>& ivec)
 }
 
 
+//int main()
+//{
+//	vector<int> ivec{ 73,26,67,51,92,19,38,42,80 };
+//	//int m = 0;
+//	//cin >> m;
+//	//int n = 0;
+//	//cin >> n;
+//	//while (m--)
+//	//{
+//	//	int temp = 0;
+//	//	cin >> temp;
+//	//	ivec.push_back(temp);
+//	//}
+//	//int* increment = new int[n];
+//
+//	//for (int i = 0; i < n; i++)
+//	//{
+//	//	int temp = 0;
+//	//	cin >> temp;
+//	//	increment[i] = temp;
+//	//}
+//
+//	//bubble_sort(ivec);
+//	//selec_sort(ivec);
+//	insert_sort(ivec);
+//	//shell_sort(ivec, increment, n);
+//	//heap_sort(ivec);
+//	//quick_sort(ivec, 0, ivec.size() - 1);
+//	//merge_sort(ivec, 0, ivec.size());
+//	//radix_sort(ivec);
+//	print_vector(ivec);
+//
+//	//delete[] increment;
+//	return 0;
+//}
+
+
 int main()
 {
-	vector<int> ivec{ 73,26,67,51,92,19,38,42,80 };
-	//int m = 0;
-	//cin >> m;
-	//int n = 0;
-	//cin >> n;
-	//while (m--)
-	//{
-	//	int temp = 0;
-	//	cin >> temp;
-	//	ivec.push_back(temp);
-	//}
-	//int* increment = new int[n];
+	srand((unsigned int)time(NULL));
+	int arr[99] = { 0 };
+	for (int i = 0; i < 99; i++)
+	{
+		int temp = rand() % 1000;
+		arr[i] = temp;
+	}
+	cout << "------------------------------------排序前------------------------------------" << endl;
+	PrintArr(arr, 99);
+	MergeSort(arr, 99);
+	cout << "------------------------------------排序后------------------------------------" << endl;
+	PrintArr(arr, 99);
 
-	//for (int i = 0; i < n; i++)
-	//{
-	//	int temp = 0;
-	//	cin >> temp;
-	//	increment[i] = temp;
-	//}
-
-	//bubble_sort(ivec);
-	//selec_sort(ivec);
-	//insert_sort(ivec);
-	//shell_sort(ivec, increment, n);
-	//heap_sort(ivec);
-	//quick_sort(ivec, 0, ivec.size() - 1);
-	//merge_sort(ivec, 0, ivec.size());
-	radix_sort(ivec);
-	print_vector(ivec);
-	//delete[] increment;
 	return 0;
 }
-
-
-

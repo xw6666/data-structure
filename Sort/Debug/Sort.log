@@ -1,6 +1,6 @@
 ﻿  sort.cpp
-E:\Codefield\data-structure\Sort\sort.cpp(73,20): warning C4018: “<”: 有符号/无符号不匹配
-E:\Codefield\data-structure\Sort\sort.cpp(95,21): warning C4018: “<”: 有符号/无符号不匹配
-E:\Codefield\data-structure\Sort\sort.cpp(97,34): warning C4018: “<”: 有符号/无符号不匹配
-E:\Codefield\data-structure\Sort\sort.cpp(262,17): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Sort\sort.cpp(82,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Sort\sort.cpp(102,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Sort\sort.cpp(104,34): warning C4018: “<”: 有符号/无符号不匹配
+E:\Codefield\data-structure\Sort\sort.cpp(334,17): warning C4018: “<”: 有符号/无符号不匹配
   Sort.vcxproj -> E:\Codefield\data-structure\Sort\Debug\Sort.exe

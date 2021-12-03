@@ -1,57 +1,121 @@
-#define _CRT_SECURE_NO_WARNINGS 1
 #include "LinkedList.h"
 
-void LinkedListInit(LinkedList* phead)
+ListNode* _GetNewNode(LTDataType x)
 {
-	//给一个哨兵结点 - val用于存放结点个数
-	*phead = (LNode*)malloc(sizeof(LNode));
-	(*phead)->next = NULL;
-	(*phead)->val = 0;
+	ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+	newNode->_next = NULL;
+	newNode->_data = x;
+	return newNode;
 }
 
-LNode* GetNewNode()
+ListNode* ListCreate()
 {
-	LNode* newNode = (LNode*)malloc(sizeof(LNode));
-	newNode->next = NULL;
-}
-
-void LinkedListPrint(LinkedList phead)
-{
-	assert(phead != NULL);
-	LNode* cur = phead;
-	cur = cur->next;
-	while (cur != NULL)
+	ListNode* list = (ListNode*)malloc(sizeof(ListNode));
+	if (list == NULL)
 	{
-		printf("%d->", cur->val);
-		cur = cur->next;
+		printf("malloc failed!");
+		exit(-1);
+	}
+	list->_data = 0;
+	list->_next = list;
+	list->_prev = list;
+	return list;
+}
+
+void ListPrint(ListNode* pHead)
+{
+	assert(pHead);
+	ListNode* cur = pHead->_next;
+	while (cur != pHead)
+	{
+		printf("%d->", cur->_data);
+		cur = cur->_next;
 	}
 	printf("NULL\n");
 }
 
-void LinkedListPushBack(LinkedList phead, ElementType x)
+void ListPushBack(ListNode* pHead, LTDataType x)
 {
-	assert(phead != NULL);
-	LNode* cur = phead->next;
-	LNode* prev = phead;
-	//找到最后一个结点
-	while (cur != NULL)
-	{
-		prev = cur;
-		cur = cur->next;
-	}
-	//prev的next为空
-	LNode* newNode = GetNewNode();
-	newNode->val = x;
-	prev->next = newNode;
-	phead->val++;   //记录结点个数
+	assert(pHead);
+	ListNode* newNode = _GetNewNode(x);
+	newNode->_next = pHead;
+	newNode->_prev = pHead->_prev;
+	pHead->_prev->_next = newNode;
+	pHead->_prev = newNode;
 }
 
-void LinkedListPushFront(LinkedList phead, ElementType x)
+void ListPopBack(ListNode* pHead)
 {
-	assert(phead != NULL);
-	LNode* newNode = GetNewNode();
-	newNode->val = x;
-	newNode->next = phead->next;
-	phead->next = newNode;
-	phead->val++;
+	assert(pHead && (pHead->_next != pHead));
+	ListNode* temp = pHead->_prev;
+	pHead->_prev = pHead->_prev->_prev;
+	pHead->_prev->_next = pHead;
+	free(temp);
+	temp = NULL;
 }
+
+void ListPushFront(ListNode* pHead, LTDataType x)
+{
+	assert(pHead);
+	ListNode* newNode = _GetNewNode(x);
+	newNode->_next = pHead->_next;
+	newNode->_prev = pHead;
+	pHead->_next->_prev = newNode;
+	pHead->_next = newNode;
+}
+
+void ListPopFront(ListNode* pHead)
+{
+	assert(pHead && pHead->_next != pHead);
+	ListNode* temp = pHead->_next;
+	pHead->_next = pHead->_next->_next;
+	pHead->_next->_prev = pHead;
+	free(temp);
+	temp = NULL;
+}
+
+ListNode* ListFind(ListNode* pHead, LTDataType x)
+{
+	assert(pHead);
+	ListNode* cur = pHead->_next;
+	while (cur != pHead)
+	{
+		if (cur->_data == x)
+		{
+			return cur;
+		}
+		cur = cur->_next;
+	}
+	return NULL;
+}
+
+void ListInsert(ListNode* pos, LTDataType x)
+{
+	//在pos前进行插入
+	assert(pos);
+	ListNode* newNode = _GetNewNode(x);
+	newNode->_next = pos;
+	newNode->_prev = pos->_prev;
+	pos->_prev->_next = newNode;
+	pos->_prev = newNode;
+}
+
+void ListErase(ListNode* pos)
+{
+	//删除pos位置的节点
+	assert(pos != NULL);
+	pos->_prev->_next = pos->_next;
+	pos->_next->_prev = pos->_prev;
+	free(pos);
+}
+
+void ListDestory(ListNode* pHead)
+{
+	assert(pHead);
+	while (pHead->_next != pHead)
+	{
+		ListPopFront(pHead);
+	}
+	free(pHead);
+}
+

@@ -238,3 +238,84 @@ using namespace std;
 //
 //	return 0;
 //}
+
+//void MergeSortNonR(int* a, int n)
+//{
+//	int* tmp = (int*)malloc(sizeof(int) * n);
+//	if (tmp == NULL)
+//	{
+//		printf("malloc fail\n");
+//		exit(-1);
+//	}
+//
+//	int gap = 1;
+//	while (gap < n)
+//	{
+//		for (int i = 0; i < n; i += 2 * gap)
+//		{
+//			// [i,i+gap-1] [i+gap,i+2*gap-1]
+//			int begin1 = i, end1 = i + gap - 1;
+//			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+//			//printf("[%d,%d][%d,%d]", begin1, end1, begin2, end2);
+//
+//			// end1 越界，[begin2,end2]不存在
+//			if (end1 >= n)
+//			{
+//				end1 = n - 1;
+//			}
+//
+//			//[begin1,end1]存在 [begin2,end2]不存在
+//			if (begin2 >= n)
+//			{
+//				begin2 = n - 1;
+//				end2 = n - 1;
+//			}
+//
+//			if (end2 >= n)
+//			{
+//				end2 = n - 1;
+//			}
+//
+//			printf("[%d,%d][%d,%d]", begin1, end1, begin2, end2);
+//			if (begin1 == 8 && end1 == 8 && begin2 == 8 && end2 == 8)
+//			{
+//				int x = 0;
+//			}
+//
+//			int index = i;
+//			while (begin1 <= end1 && begin2 <= end2)
+//			{
+//				if (a[begin1] < a[begin2])
+//				{
+//					tmp[index++] = a[begin1++];
+//				}
+//				else
+//				{
+//					tmp[index++] = a[begin2++];
+//				}
+//			}
+//
+//			while (begin1 <= end1)
+//			{
+//				tmp[index++] = a[begin1++];
+//			}
+//
+//			while (begin2 <= end2)
+//			{
+//				tmp[index++] = a[begin2++];
+//			}
+//		}
+//		printf("\n");
+//
+//		// 把归并数据拷贝回原数组
+//		for (int i = 0; i < n; ++i)
+//		{
+//			a[i] = tmp[i];
+//		}
+//
+//		gap *= 2;
+//	}
+//
+//	free(tmp);
+//	tmp = NULL;
+//}
