@@ -1,0 +1,3 @@
+﻿  test.cpp
+E:\Codefield\data-structure\HuffmanTree\test.cpp(152,20): warning C4018: “<”: 有符号/无符号不匹配
+  HuffmanTree.vcxproj -> E:\Codefield\data-structure\HuffmanTree\Debug\HuffmanTree.exe

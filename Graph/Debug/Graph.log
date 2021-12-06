@@ -1,0 +1,8 @@
+﻿  Graph.cpp
+E:\Codefield\data-structure\Graph\Graph.h(14,1): warning C4005: “INFINITY”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88): message : 参见“INFINITY”的前一个定义
+  test.cpp
+E:\Codefield\data-structure\Graph\Graph.h(14,1): warning C4005: “INFINITY”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88): message : 参见“INFINITY”的前一个定义
+  正在生成代码...
+  Graph.vcxproj -> E:\Codefield\data-structure\Graph\Debug\Graph.exe

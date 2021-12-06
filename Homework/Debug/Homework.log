@@ -1,3 +1,2 @@
 ﻿  ReverseSort.cpp
-E:\Codefield\data-structure\Homework\ReverseSort.cpp(404,21): warning C4018: “<”: 有符号/无符号不匹配
-  Homework.vcxproj -> E:\Codefield\data-structure\Homework\Debug\Homework.exe
+E:\Codefield\data-structure\Homework\ReverseSort.cpp : fatal error C1041: 无法打开程序数据库“E:\Codefield\data-structure\Homework\Debug\vc142.pdb”；如果要将多个 CL.EXE 写入同一个 .PDB 文件，请使用 /FS
