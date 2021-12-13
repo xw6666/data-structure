@@ -1,0 +1,6 @@
+﻿  test.cpp
+C:\Users\晓伍\source\repos\dijistra\test.cpp(8,1): warning C4005: “INFINITY”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88): message : 参见“INFINITY”的前一个定义
+C:\Users\晓伍\source\repos\dijistra\test.cpp(134,21): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\晓伍\source\repos\dijistra\test.cpp(136,10): warning C4018: “<”: 有符号/无符号不匹配
+  dijistra.vcxproj -> C:\Users\晓伍\source\repos\dijistra\Debug\dijistra.exe
